@@ -1,6 +1,7 @@
 package nextstep.helloworld.mvc.handler;
 
 import nextstep.helloworld.mvc.domain.User;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,17 +13,17 @@ import java.util.List;
 @RequestMapping("/method-argument")
 public class MethodArgumentController {
 
-    @GetMapping("/users")
-    public ResponseEntity<List<User>> requestParam(String userName) {
+    @GetMapping(value = "/users",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<User>> requestParam(@RequestParam(name = "name") String name) {
         List<User> users = Arrays.asList(
-                new User(userName, "email"),
-                new User(userName, "email")
+                new User(name, "email"),
+                new User(name, "email")
         );
         return ResponseEntity.ok().body(users);
     }
 
     @PostMapping("/users/body")
-    public ResponseEntity requestBody(User user) {
+    public ResponseEntity requestBody(@RequestBody User user) {
         User newUser = new User(1L, user.getName(), user.getEmail());
         return ResponseEntity.created(URI.create("/users/" + newUser.getId())).body(newUser);
     }
