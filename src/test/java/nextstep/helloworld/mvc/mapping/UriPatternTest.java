@@ -70,7 +70,7 @@ public class UriPatternTest {
     void patternStars() {
         RestAssured.given().log().all()
                 .accept(MediaType.APPLICATION_JSON_VALUE)
-                .when().get("/uri-pattern/patterns/multi")
+                .when().get("ㅍ")
                 .then().log().all()
                 .statusCode(HttpStatus.OK.value())
                 .body(is("pattern-multi"));
