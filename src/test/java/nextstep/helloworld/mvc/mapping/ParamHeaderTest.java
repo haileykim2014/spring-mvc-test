@@ -30,7 +30,7 @@ public class ParamHeaderTest {
     void message() {
         RestAssured.given().log().all()
                 .accept(MediaType.APPLICATION_JSON_VALUE)
-                .when().get("/param-header/message")
+                .when().get("/param-header/message1")
                 .then().log().all()
                 .statusCode(HttpStatus.OK.value())
                 .body(is("message"));
@@ -45,7 +45,7 @@ public class ParamHeaderTest {
     void messageForParam() {
         RestAssured.given().log().all()
                 .accept(MediaType.APPLICATION_JSON_VALUE)
-                .when().get("/param-header/message?name=hello")
+                .when().get("/param-header/message2?name=hello")
                 .then().log().all()
                 .statusCode(HttpStatus.OK.value())
                 .body(is("hello"));
